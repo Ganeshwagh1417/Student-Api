@@ -1,0 +1,46 @@
+package Boot_demo.dto;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Student {
+	@Id
+   int id;
+   String name;
+   String email;
+   String adress;
+   double cno;
+   
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+public String getAdress() {
+	return adress;
+}
+public void setAdress(String adress) {
+	this.adress = adress;
+}
+public double getCno() {
+	return cno;
+}
+public void setCno(double cno) {
+	this.cno = cno;
+}
+   
+}

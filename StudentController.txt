@@ -1,0 +1,63 @@
+package Spring_demo_Controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.repository.StudentReposatory;
+
+import Boot_demo.dto.Student;
+
+@RestController
+public class StudentController {
+    @Autowired
+	StudentReposatory sp;
+    
+    @PostMapping("/savestudent")
+    public String saveStudent(@RequestBody Student s)
+    {
+    	sp.save(s);
+    	return "Student data saved";
+    }
+    
+    
+    @GetMapping("/fetchstudent")
+    public Student getStudent(@RequestParam int id )
+    {
+    	Optional<Student>s=sp.findById(id);
+    	Student st=s.get();
+    	return st;
+    }
+    @GetMapping("/fetchbyname")
+    public List<Student> getByName(@RequestParam String name){
+    	List<Student>s=  sp.findByName(name);
+    	return s;
+    }
+    
+    @GetMapping("/findbyadress")
+    public List<Student> getByAdress(@RequestParam String address){
+    	List<Student>sk=sp.findByAdress(address);
+    	return sk;
+    }
+    @PutMapping("/updatestudent")
+    public String updateStudent(@RequestBody Student s) {
+    	sp.save(s);
+		return "Student data updated";
+    	
+    }
+    
+    @DeleteMapping("/deletestu") 
+    public String  deleteStudent(@RequestParam int id) {
+    	sp.deleteById(id);
+    	
+       return "student deleted";
+    }
+}
